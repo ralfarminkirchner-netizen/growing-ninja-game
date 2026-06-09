@@ -135,7 +135,16 @@ def show_status():
     size = min(5, 1 + player["level"] // 2)
     bar = "█" * size + "░" * (6 - size)
     
-    print(f"\n{C.BOLD}🥷 {player['name']}  |  Stufe: {C.HEADER}{stage}{C.ENDC}  |  Level {player['level']}")
+    # Small visual ninja that "grows"
+    ninja_art = {
+        "Genin": "🥷",
+        "Chunin": "🥷",
+        "Jonin": "🗡️🥷",
+        "Elite Super Ninja": "🔥🥷",
+        "Kage (Legendär)": "👑🥷"
+    }.get(stage, "🥷")
+    
+    print(f"\n{C.BOLD}{ninja_art} {player['name']}  |  Stufe: {C.HEADER}{stage}{C.ENDC}  |  Level {player['level']}")
     print(f"XP: {player['xp']}   Gold: {player['gold']}   Größe & Kraft: [{bar}]")
     print(f"Upgrades → Sprung: {player['upgrades']['jump']}  |  Sterne: {player['upgrades']['star']}  |  Kraft: {player['upgrades']['strength']}")
 
